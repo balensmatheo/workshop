@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-workshop-staging-93413-authRole",
+      "UnauthRoleArn": "arn:aws:iam::030788213331:role/amplify-workshop-staging-93413-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::030788213331:role/amplify-workshop-staging-93413-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-workshop-staging-93413-deployment",
+      "UnauthRoleName": "amplify-workshop-staging-93413-unauthRole",
+      "StackName": "amplify-workshop-staging-93413",
+      "StackId": "arn:aws:cloudformation:eu-west-1:030788213331:stack/amplify-workshop-staging-93413/8abf9090-42fe-11ed-ad85-0ac1d5a1014d",
+      "AmplifyAppId": "d3k8prg66t7d5m"
+    },
+    "categories": {
+      "auth": {
+        "workshopa77308b7": {}
+      }
+    }
+  }
+}
