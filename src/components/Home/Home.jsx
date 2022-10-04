@@ -1,9 +1,10 @@
 import {Box, Button, Link, List, ListItem, Typography} from "@mui/material";
 import {Auth} from "aws-amplify";
 import {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
-import Header from '../Header/Header'
-import AppBar from "../Header/AppBar";
+import {Route, Routes, useLocation, useNavigate} from "react-router-dom";
+import NavBar from "../../Layouts/NavBar";
+import Dashboard from "../DashBoard/Dashboard";
+import Meschamps from "../MesChamps/Meschamps";
 
 
 export default function Home() {
@@ -11,9 +12,12 @@ export default function Home() {
         assessLoginState().then(r=>r);
     }, [])
 
+
     const [loggedIn, setLoggedIn] = useState(false);
     const [user, setUser] = useState();
     const navigate = useNavigate();
+
+
     async function signOut() {
         try {
             await Auth.signOut();
@@ -25,7 +29,7 @@ export default function Home() {
 
     async function assessLoginState(){
         try {
-            Auth.currentAuthenticatedUser().then(user => {
+            await Auth.currentAuthenticatedUser().then(user => {
                 setUser(user)
                 setLoggedIn(true);
             }).catch(
@@ -40,23 +44,13 @@ export default function Home() {
 
     return(
         <Box>
-            <Header></Header>
-            <AppBar></AppBar>
-            <Typography>Liens</Typography>
-            <List>
-                {
-                    loggedIn ?
-                        <Box>
-                            <h1>Vous êtes connecté en tant que {user.attributes.email}</h1>
-                            <Button onClick={() => signOut()}>Déconnexion</Button>
-                        </Box>
-                        :
-                        <Box>
-                            <ListItem><Link href={"/login"}>Connexion</Link></ListItem>
-                            <ListItem><Link href={"/signin"}>Inscription</Link></ListItem>
-                        </Box>
-                }
-            </List>
+            <NavBar loggedIn={loggedIn}/>
+            <Box sx={{p:2}}>
+                <Routes>
+                    <Route path={"dashboard"} element={<Dashboard user={user} loggedIn={loggedIn}/>}/>
+                    <Route path={"mes-champs"} element={<Meschamps/>}/>
+                </Routes>
+            </Box>
         </Box>
     );
 }

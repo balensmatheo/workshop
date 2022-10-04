@@ -30,21 +30,11 @@ export default function Login({onSignIn, getUser}) {
                 .then(user => {
                     if (user.challengeName === 'NEW_PASSWORD_REQUIRED') {
                         setChallenge(true);
-                        setLoading(false)
+                        setLoading(false);
                     } else {
-                        if(user.getSignInUserSession().getAccessToken().payload['cognito:groups'] === undefined){
-                            setError({state: true, value: "Vous n'avez pas les droits pour vous connecter"})
-                            setLoading(false)
-                        }
-                        else if (user.getSignInUserSession().getAccessToken().payload['cognito:groups'][0] === "Users") {
-                            onSignIn();
-                            setLoading(false)
-                            navigate("/import-data")
-                        } else {
-                            onSignIn();
-                            setLoading(false)
-                            navigate("/")
-                        }
+                        onSignIn();
+                        setLoading(false);
+                        navigate("/");
                     }
                 });
             getUser(user);
@@ -77,7 +67,7 @@ export default function Login({onSignIn, getUser}) {
 
     // Rendering
     return(
-        <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: "100%", height: "100vh"}}>
+        <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center',  width: "100%", height: "100vh", bgcolor: "#2d7b00"}}>
             <Paper
                 elevation={8}
                 sx={{
@@ -152,9 +142,9 @@ export default function Login({onSignIn, getUser}) {
                             </LoadingButton>
                             :
                             <LoadingButton loading={loading} sx={{
-                                bgcolor: "#9a2797",
+                                bgcolor: "rgba(70,139,0,0.7)",
                                 '&:hover': {
-                                    bgcolor: "rgba(154,39,151,0.53)",
+                                    bgcolor: "rgba(65,190,0,0.53)",
                                 }
                             }}
                                            variant={"contained"}

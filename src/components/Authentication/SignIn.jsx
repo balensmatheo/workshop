@@ -28,7 +28,10 @@ export default function SignIn(){
                 autoSignIn: { // optional - enables auto sign in after user is confirmed
                     enabled: true,
                 }
-            }).then(() => setChallenge(true));
+            }).then(() => {
+                setChallenge(true)
+                listenToAutoSignInEvent();
+            });
             setLoading(false)
             console.log(user);
         } catch (error) {
@@ -38,21 +41,28 @@ export default function SignIn(){
     }
 
     function listenToAutoSignInEvent() {
+        setLoading(true)
         Hub.listen('auth', ({ payload }) => {
             const { event } = payload;
             if (event === 'autoSignIn') {
                 const user = payload.data;
-                // assign user
+                navigate("/", {state: {user: user}})
             } else if (event === 'autoSignIn_failure') {
-                navigate("/login")
+                navigate("/signin")
             }
         })
+        setLoading(false);
     }
 
     async function confirmSignUp() {
         try {
             setLoading(true)
-            await Auth.confirmSignUp(username, code).then(() => navigate("/"));
+            await Auth.confirmSignUp(username, code).then(data => {
+              if(data==="SUCCESS"){
+                  listenToAutoSignInEvent();
+              }
+            });
+
             setLoading(false);
         } catch (error) {
             console.log('error confirming sign up', error);
@@ -61,7 +71,7 @@ export default function SignIn(){
     }
 
     return(
-        <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: "100%", height: "100vh"}}>
+        <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: "100%", height: "100vh", bgcolor: 'green'}}>
             <Paper
                 elevation={8}
                 sx={{
@@ -97,16 +107,10 @@ export default function SignIn(){
                     <TextField helperText={error.value} error={error.state} onChange={event => setPassword(event.target.value)} value={password} margin={"normal"} variant={"standard"} size={"small"} name={"Password"} type={"password"} label={<Typography>Password</Typography>}/>
                     {
                         challenge ?
-                            <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                                <TextField onChange={event => setCode(event.target.value)} value={code}
-                                           margin={"normal"} variant={"standard"} size={"small"} name={"Code"}
-                                           label={"Code de vérification"}/>
-                                <LoadingButton loading={loading} onClick={() => confirmSignUp()}>Confirmer le code</LoadingButton>
-                            </Box>
+                            <TextField onChange={event => setCode(event.target.value)} value={code} margin={"normal"} variant={"standard"} size={"small"} name={"Code"} label={"Code de vérification"}/>
                             :
                             undefined
                     }
-
                 </Box>
                 <Box>
                     {
