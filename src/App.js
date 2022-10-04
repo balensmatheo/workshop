@@ -5,6 +5,7 @@ import Login from "./components/Authentication/Login";
 import Home from "./components/Home/Home";
 
 function App() {
+
   return (
       <Box>
           <Routes>
