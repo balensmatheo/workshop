@@ -2,6 +2,8 @@ import {Box, Button, Link, List, ListItem, Typography} from "@mui/material";
 import {Auth} from "aws-amplify";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
+import Header from '../Header/Header'
+import AppBar from "../Header/AppBar";
 
 
 export default function Home() {
@@ -38,6 +40,8 @@ export default function Home() {
 
     return(
         <Box>
+            <Header></Header>
+            <AppBar></AppBar>
             <Typography>Liens</Typography>
             <List>
                 {
