@@ -1,20 +1,15 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-workshop-dev-102431-authRole",
-      "UnauthRoleArn": "arn:aws:iam::030788213331:role/amplify-workshop-dev-102431-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::030788213331:role/amplify-workshop-dev-102431-authRole",
+      "AuthRoleName": "amplify-happgri-dev-113117-authRole",
+      "UnauthRoleArn": "arn:aws:iam::030788213331:role/amplify-happgri-dev-113117-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::030788213331:role/amplify-happgri-dev-113117-authRole",
       "Region": "eu-west-1",
-      "DeploymentBucketName": "amplify-workshop-dev-102431-deployment",
-      "UnauthRoleName": "amplify-workshop-dev-102431-unauthRole",
-      "StackName": "amplify-workshop-dev-102431",
-      "StackId": "arn:aws:cloudformation:eu-west-1:030788213331:stack/amplify-workshop-dev-102431/fa6f6e00-43bd-11ed-b240-06172ad48cdb",
-      "AmplifyAppId": "d3tpioah5o74iy"
-    },
-    "categories": {
-      "auth": {
-        "workshopfa425205": {}
-      }
+      "DeploymentBucketName": "amplify-happgri-dev-113117-deployment",
+      "UnauthRoleName": "amplify-happgri-dev-113117-unauthRole",
+      "StackName": "amplify-happgri-dev-113117",
+      "StackId": "arn:aws:cloudformation:eu-west-1:030788213331:stack/amplify-happgri-dev-113117/4d9078a0-43c7-11ed-91a0-0a16ebd66085",
+      "AmplifyAppId": "d1oe9in55bvwbr"
     }
   }
 }

@@ -98,7 +98,6 @@ export default function Login({onSignIn, getUser}) {
                     <Avatar sx={{mb:1}} size={"lg"} />
                     <Typography
                         id="nav-list-browse"
-                        textColor="neutral.500"
                         fontWeight={700}
                         sx={{
                             textTransform: 'uppercase',
@@ -110,8 +109,8 @@ export default function Login({onSignIn, getUser}) {
                 </Box>
                 <Box sx={{width: "100%", display: "flex", flexDirection: 'column', mb: 2}}>
                     <Divider sx={{mb:2}} variant={"fullWidth"}/>
-                    <TextField onChange={event => setMail(event.target.value)} value={mail} margin={"normal"} variant={"standard"} size={"small"} name={"Email"} type={"email"} label={<Typography startDecorator={<Mail/>}>Email</Typography>}/>
-                    <TextField helperText={error.value} error={error.state} onChange={event => setPassword(event.target.value)} value={password} margin={"normal"} variant={"standard"} size={"small"} name={"Password"} type={"password"} label={<Typography startDecorator={<Password/>}>Password</Typography>}/>
+                    <TextField onChange={event => setMail(event.target.value)} value={mail} margin={"normal"} variant={"standard"} size={"small"} name={"Email"} type={"email"} label={<Typography>Email</Typography>}/>
+                    <TextField helperText={error.value} error={error.state} onChange={event => setPassword(event.target.value)} value={password} margin={"normal"} variant={"standard"} size={"small"} name={"Password"} type={"password"} label={<Typography>Password</Typography>}/>
                     {
                         challenge ?
                             <Box sx={{display: "flex", flexDirection: "column"}}>
