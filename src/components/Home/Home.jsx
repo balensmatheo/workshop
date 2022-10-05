@@ -6,6 +6,7 @@ import NavBar from "../../Layouts/NavBar";
 import Dashboard from "../DashBoard/Dashboard";
 import Meschamps from "../MesChamps/Meschamps";
 import {NoAccounts} from "@mui/icons-material";
+import Footer from "../../Layouts/Footer";
 
 
 export default function Home() {
@@ -63,6 +64,7 @@ export default function Home() {
                     <Route path={"mes-champs"} element={<Meschamps/>}/>
                 </Routes>
             </Box>
+            <Footer/>
         </Box>
     );
 }

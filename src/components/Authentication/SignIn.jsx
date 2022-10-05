@@ -6,6 +6,8 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import React, {useState} from "react";
 import {Auth, Hub} from "aws-amplify";
 import {useNavigate} from "react-router-dom";
+import NavBar from "../../Layouts/NavBar";
+import Footer from "../../Layouts/Footer";
 
 
 export default function SignIn(){
@@ -71,7 +73,9 @@ export default function SignIn(){
     }
 
     return(
-        <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center', width: "100%", height: "100vh", bgcolor: 'green'}}>
+        <Box>
+            <NavBar/>
+        <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center', width: "100%"}}>
             <Paper
                 elevation={8}
                 sx={{
@@ -128,6 +132,8 @@ export default function SignIn(){
                     <Link>Mot de passe oublié ?</Link>
                 </Typography>
             </Paper>
+        </Box>
+            <Footer/>
         </Box>
     )
 }

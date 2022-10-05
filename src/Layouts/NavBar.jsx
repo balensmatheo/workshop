@@ -15,7 +15,7 @@ import {MenuRounded} from "@mui/icons-material";
 import {Divider, Link} from "@mui/material";
 import {Auth} from "aws-amplify";
 import {useNavigate} from "react-router-dom";
-
+import Logo from "../assets/logo.png"
 
 export default function NavBar(props){
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -36,6 +36,7 @@ export default function NavBar(props){
     async function signOut() {
         try {
             await Auth.signOut();
+            navigate("/");
             window.location.reload();
         } catch (error) {
             console.log('error signing out: ', error);
@@ -50,10 +51,9 @@ export default function NavBar(props){
     const navigate = useNavigate();
 
     return (
-        <AppBar sx={{backgroundColor: 'green'}} className={"test"} position="static">
+        <AppBar sx={{backgroundColor: '#1b7400'}} className={"test"} position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                     <Typography
                         variant="h6"
                         noWrap
@@ -69,44 +69,8 @@ export default function NavBar(props){
                             textDecoration: 'none',
                         }}
                     >
-                        HappGri
+                        <img style={{width: "150px"}} alt="logo" src={Logo}/>
                     </Typography>
-
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                        <IconButton
-                            size="large"
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={handleOpenNavMenu}
-                            color="inherit"
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Menu
-                            id="menu-appbar"
-                            anchorEl={anchorElNav}
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'left',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'left',
-                            }}
-                            open={Boolean(anchorElNav)}
-                            onClose={handleCloseNavMenu}
-                            sx={{
-                                display: { xs: 'block', md: 'none' },
-                            }}
-                        >
-                                <MenuItem onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">Page 1</Typography>
-                                </MenuItem>
-                        </Menu>
-                    </Box>
-                    <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                     <Typography
                         variant="h5"
                         noWrap
@@ -123,7 +87,7 @@ export default function NavBar(props){
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        <img style={{width: "180px"}} src={Logo} alt={"Logo"}/>
                     </Typography>
                     {
                         props.loggedIn ?
