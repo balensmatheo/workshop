@@ -44,6 +44,10 @@ export default function Login({onSignIn, getUser}) {
             if (e.message === "Incorrect username or password.") {
                 setError({state: true, value: "Email ou mot de passe incorrect"})
             }
+            if(e.message === "User does not exist."){
+                setError({state: true, value: "L'utilisateur n'existe pas !"})
+            }
+            setError({state: true, value: e.message});
             console.log("Error while Sign-In : " + e);
             setLoading(false);
         }
@@ -165,6 +169,7 @@ export default function Login({onSignIn, getUser}) {
                         }
                     </Box>
 
+
                     <Box sx={{display: "flex", flexDirection: 'column', width: "100%"}}>
                         <Divider variant={'fullWidth'} sx={{mb: 2}}/>
                         {
@@ -193,7 +198,6 @@ export default function Login({onSignIn, getUser}) {
                                 </LoadingButton>
                         }
                     </Box>
-
                     <Typography
                         fontSize="8pt"
                         sx={{alignSelf: 'center'}}

@@ -91,16 +91,18 @@ export default function NavBar(props){
                     </Typography>
                     {
                         props.loggedIn ?
-                            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, gap: "30px"}}>
                                 <Button
+                                    color={"success"}
                                     onClick={() => navigate("/dashboard")}
-                                    sx={{ my: 2, color: 'white', display: 'block' }}
+                                    sx={{ my: 2, color: 'white', display: 'block', fontWeight: 600, "&hover" : {opacity: 0.7} }}
                                 >
                                     Tableau de bord
                                 </Button>
                                 <Button
+                                    color={"success"}
                                     onClick={() => navigate("mes-champs")}
-                                    sx={{ my: 2, color: 'white', display: 'block' }}
+                                    sx={{ my: 2, color: 'white', display: 'block', fontWeight: 600, "&hover" : {opacity: 0.7} }}
                                 >
                                     Mes champs
                                 </Button>

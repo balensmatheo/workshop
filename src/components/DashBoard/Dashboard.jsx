@@ -29,12 +29,15 @@ export default function Dashboard(props){
         }
     }
 
-    return (
-        <Box>
+    if(Auth.user !== null){
+        return (
             <Box>
-                <Typography fontSize={"calc(8px + 2.2vmin)"}>Bienvenue sur le tableau de bord {Auth.user !== null ? Auth.user.attributes.email : undefined}</Typography>
+                <Box>
+                    <Typography fontSize={"calc(8px + 2.2vmin)"}>Bienvenue sur le tableau de bord {Auth.user !== null ? Auth.user.attributes.email : undefined}</Typography>
+                </Box>
+                <Divider/>
             </Box>
-            <Divider/>
-        </Box>
-    )
+        )
+    }
+
 }

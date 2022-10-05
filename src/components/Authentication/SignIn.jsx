@@ -34,7 +34,6 @@ export default function SignIn(){
                 setChallenge(true)
                 listenToAutoSignInEvent();
             });
-            setLoading(false)
             console.log(user);
         } catch (error) {
             setLoading(false);
@@ -64,7 +63,6 @@ export default function SignIn(){
                   listenToAutoSignInEvent();
               }
             });
-
             setLoading(false);
         } catch (error) {
             console.log('error confirming sign up', error);
@@ -109,6 +107,18 @@ export default function SignIn(){
                     <Divider sx={{mb:2}} variant={"fullWidth"}/>
                     <TextField onChange={event => setUsername(event.target.value)} value={username} margin={"normal"} variant={"standard"} size={"small"} name={"Email"} type={"email"} label={<Typography>Email</Typography>}/>
                     <TextField helperText={error.value} error={error.state} onChange={event => setPassword(event.target.value)} value={password} margin={"normal"} variant={"standard"} size={"small"} name={"Password"} type={"password"} label={<Typography>Password</Typography>}/>
+                    <Box sx={{display: "flex", flexDirection: "column"}}>
+                        <Box sx={{
+                            display: "flex",
+                            flexDiraction: "row",
+                            alignItems: "center",
+                            width: "100%",
+                            mt: 1
+                        }}>
+                            <CheckCircle color={password.length >= 8 ? "success" : "danger"}/>
+                            <Typography sx={{ml: 1}}>8 caractères minimum</Typography>
+                        </Box>
+                    </Box>
                     {
                         challenge ?
                             <TextField onChange={event => setCode(event.target.value)} value={code} margin={"normal"} variant={"standard"} size={"small"} name={"Code"} label={"Code de vérification"}/>
@@ -116,12 +126,12 @@ export default function SignIn(){
                             undefined
                     }
                 </Box>
-                <Box>
+                <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center', width: "100%"}}>
                     {
                         challenge ?
-                            <LoadingButton loading={loading} onClick={() => confirmSignUp()}>Confirmer le code</LoadingButton>
+                            <LoadingButton variant={'contained'} color={"success"} loading={loading} onClick={() => confirmSignUp()}>Confirmer le code</LoadingButton>
                             :
-                            <LoadingButton loading={loading} onClick={() => signUp()}>Inscription</LoadingButton>
+                            <LoadingButton variant={"contained"} color={"success"} disabled={password.length<8} loading={loading} onClick={() => signUp()}>Inscription</LoadingButton>
                     }
 
                 </Box>
