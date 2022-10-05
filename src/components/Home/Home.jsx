@@ -7,7 +7,7 @@ import Dashboard from "../DashBoard/Dashboard";
 import Meschamps from "../MesChamps/Meschamps";
 import {NoAccounts} from "@mui/icons-material";
 import Footer from "../../Layouts/Footer";
-
+import Profil from "../Profil/Profil";
 
 export default function Home() {
     useEffect(()=>{
@@ -62,6 +62,7 @@ export default function Home() {
                 <Routes>
                     <Route path={"dashboard"} element={<Dashboard user={user} loggedIn={loggedIn}/>}/>
                     <Route path={"mes-champs"} element={<Meschamps/>}/>
+                    <Route path={"profil"} element={<Profil/>}/>
                 </Routes>
             </Box>
             <Footer/>
