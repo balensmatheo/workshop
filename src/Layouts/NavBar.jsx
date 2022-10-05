@@ -35,7 +35,6 @@ export default function NavBar(props){
 
     async function signOut() {
         try {
-            console.log("ok");
             await Auth.signOut();
             window.location.reload();
         } catch (error) {
@@ -59,7 +58,7 @@ export default function NavBar(props){
                         variant="h6"
                         noWrap
                         component="a"
-                        href="/"
+                        href="/dashboard"
                         sx={{
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
@@ -112,7 +111,7 @@ export default function NavBar(props){
                         variant="h5"
                         noWrap
                         component="a"
-                        href=""
+                        href="dashboard"
                         sx={{
                             mr: 2,
                             display: { xs: 'flex', md: 'none' },
@@ -171,7 +170,7 @@ export default function NavBar(props){
                                     open={Boolean(anchorElUser)}
                                     onClose={handleCloseUserMenu}
                                 >
-                                    <MenuItem onClick={handleCloseUserMenu}>
+                                    <MenuItem onClick={() => navigate("/profil")}>
                                         <Typography textAlign="center">Profil</Typography>
                                     </MenuItem>
                                     <MenuItem onClick={() => signOut()}>

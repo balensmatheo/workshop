@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import {Divider} from "@mui/material";
+import {NoAccounts} from "@mui/icons-material";
 
 export default function Dashboard(props){
 
@@ -31,7 +32,7 @@ export default function Dashboard(props){
     return (
         <Box>
             <Box>
-                <Typography fontSize={"calc(8px + 2.2vmin)"}>Bienvenue sur le tableau de bord</Typography>
+                <Typography fontSize={"calc(8px + 2.2vmin)"}>Bienvenue sur le tableau de bord {Auth.user !== null ? Auth.user.attributes.email : undefined}</Typography>
             </Box>
             <Divider/>
         </Box>

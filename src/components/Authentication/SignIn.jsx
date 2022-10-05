@@ -46,7 +46,7 @@ export default function SignIn(){
             const { event } = payload;
             if (event === 'autoSignIn') {
                 const user = payload.data;
-                navigate("/", {state: {user: user}})
+                navigate("/dashboard", {state: {user: user}})
             } else if (event === 'autoSignIn_failure') {
                 navigate("/signin")
             }
@@ -71,7 +71,7 @@ export default function SignIn(){
     }
 
     return(
-        <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: "100%", height: "100vh", bgcolor: 'green'}}>
+        <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center', width: "100%", height: "100vh", bgcolor: 'green'}}>
             <Paper
                 elevation={8}
                 sx={{

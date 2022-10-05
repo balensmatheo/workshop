@@ -27,7 +27,7 @@ function App() {
     return (
       <Box>
           <Routes>
-              <Route path={"*"} element={<Home loggedIn/>}/>
+              <Route path={"*"} element={<Home/>}/>
               <Route path="/login" element={<Login onSignIn={onSignIn} getUser={getUser}/>}/>
               <Route path={"/signin"} element={<SignIn/>}/>
           </Routes>

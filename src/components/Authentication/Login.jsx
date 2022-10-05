@@ -34,7 +34,7 @@ export default function Login({onSignIn, getUser}) {
                     } else {
                         onSignIn();
                         setLoading(false);
-                        navigate("/");
+                        navigate("/dashboard");
                     }
                 });
             getUser(user);

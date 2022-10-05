@@ -5,6 +5,7 @@ import {Route, Routes, useLocation, useNavigate} from "react-router-dom";
 import NavBar from "../../Layouts/NavBar";
 import Dashboard from "../DashBoard/Dashboard";
 import Meschamps from "../MesChamps/Meschamps";
+import {NoAccounts} from "@mui/icons-material";
 
 
 export default function Home() {
@@ -46,6 +47,17 @@ export default function Home() {
         <Box>
             <NavBar loggedIn={loggedIn}/>
             <Box sx={{p:2}}>
+                {
+                    Auth.user === null ?
+                        <Box sx={{display: 'flex', flexDirection: 'column', p: 1, justifyContent: 'center', alignItems: 'center', height: "50vh"}}>
+                            <NoAccounts color={"error"} sx={{fontSize: "70px", mb:1}}/>
+                            <Typography fontSize={"calc(8px + 2.2vmin)"}>Vous n'êtes pas authentifié, veuillez vous connecter ou créer un compte.</Typography>
+                        </Box>
+                        :
+                        <Box>
+
+                        </Box>
+                }
                 <Routes>
                     <Route path={"dashboard"} element={<Dashboard user={user} loggedIn={loggedIn}/>}/>
                     <Route path={"mes-champs"} element={<Meschamps/>}/>
