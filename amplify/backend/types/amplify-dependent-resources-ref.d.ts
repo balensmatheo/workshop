@@ -22,5 +22,12 @@ export type AmplifyDependentResourcesAttributes = {
             "Region": "string",
             "Arn": "string"
         }
+    },
+    "api": {
+        "HappGri": {
+            "GraphQLAPIKeyOutput": "string",
+            "GraphQLAPIIdOutput": "string",
+            "GraphQLAPIEndpointOutput": "string"
+        }
     }
 }

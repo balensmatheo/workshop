@@ -10,15 +10,36 @@ import "maplibre-gl-js-amplify/dist/public/amplify-geocoder.css";
 import '@aws-amplify/ui-react/styles.css';
 import {Marker} from "react-map-gl";
 import Button from "@mui/material/Button";
-
-
+import {DataStore} from "aws-amplify";
+import "./meschamps.css"
+import {Champ} from "../../models";
+import {useNavigate} from "react-router-dom";
+import Tooltip from "@mui/material/Tooltip";
 export default function Meschamps(){
 
-
     useEffect(() => {
-        fetchChamps().then(r => r);
         initializeMap().then(r => r);
+        fetchChamps().then(r => r);
     }, [])
+
+    const [markers, setMarkers] = useState([]);
+
+    async function fetchChamps(){
+        try{
+            const champs = await DataStore.query(Champ);
+            setMarkers(champs)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    const [{ latitude, longitude }, setMarkerLocation] = useState({
+        latitude: 40,
+        longitude: -100,
+    });
+
+    const updateMarker = () =>
+        setMarkerLocation({ latitude: latitude + 5, longitude: longitude + 5 });
 
     async function initializeMap() {
         const el = document.createElement("div");
@@ -34,37 +55,22 @@ export default function Meschamps(){
         map.addControl(createAmplifyGeocoder());
     }
 
-    async function fetchChamps(){
-        try{
 
-        } catch (e) {
-            console.log(e);
-        }
-    }
 
-    const [{ latitude, longitude }, setMarkerLocation] = useState({
-        latitude: 40,
-        longitude: -100,
-    });
-
-    const updateMarker = () =>
-        setMarkerLocation({ latitude: latitude + 5, longitude: longitude + 5 });
-
+    const navigate = useNavigate();
 
     return(
         <>
-            <Box>
-                <Box>
-                    <Typography sx={{fontSize: "calc(8px + 2.2vmin)"}}>Liste de vos champs</Typography>
-                </Box>
-                <Divider/>
-                <MapView>
-                    <LocationSearch position="top-left" />
-                    <Marker latitude={latitude} longitude={longitude} />
-                </MapView>
-            </Box>
+            <MapView style={{display: 'flex', flexDirection: 'row', width: '100%'}}>
+                <LocationSearch position={"top-left"}/>
+                {
+                    markers.map((marker) => (
+                        <Marker onClick={() => navigate("/detailsChamp", {state: {id: marker.id}})} color={marker.etat === "true" ? 'red' : 'green'} longitude={marker.longitude} latitude={marker.latitude}/>
+                    ))
+                }
+            </MapView>
         </>
-
     )
 }
+
 

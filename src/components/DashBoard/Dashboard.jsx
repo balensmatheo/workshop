@@ -31,7 +31,7 @@ export default function Dashboard(props){
 
     if(Auth.user !== null){
         return (
-            <Box>
+            <Box sx={{p:2}}>
                 <Box>
                     <Typography fontSize={"calc(8px + 2.2vmin)"}>Bienvenue sur le tableau de bord {Auth.user !== null ? Auth.user.attributes.email : undefined}</Typography>
                 </Box>

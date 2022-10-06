@@ -1,0 +1,22 @@
+type Logs @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  champId: String
+  date: AWSDateTime
+  latitude: Float
+  longitude: Float
+}
+
+type CameraType @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  nom: String
+  angle: String
+}
+
+type Champ @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  label: String
+  latitude: Float
+  longitude: Float
+  etat: String
+}
+ 
