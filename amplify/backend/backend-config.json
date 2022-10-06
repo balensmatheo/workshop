@@ -1,0 +1,91 @@
+{
+  "auth": {
+    "HappGri": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": [
+            "REQUIRES_LOWERCASE",
+            "REQUIRES_UPPERCASE"
+          ]
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      }
+    }
+  },
+  "geo": {
+    "placeindexe994d807": {
+      "isDefault": true,
+      "providerPlugin": "awscloudformation",
+      "service": "PlaceIndex",
+      "dataProvider": "Here",
+      "dataSourceIntendedUse": "SingleUse",
+      "accessType": "AuthorizedUsers",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "HappGri",
+          "attributes": [
+            "UserPoolId"
+          ]
+        }
+      ]
+    },
+    "mape5b26a6c": {
+      "isDefault": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Map",
+      "mapStyle": "VectorEsriStreets",
+      "accessType": "AuthorizedUsers",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "HappGri",
+          "attributes": [
+            "UserPoolId"
+          ]
+        }
+      ]
+    }
+  },
+  "api": {
+    "HappGri": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 30,
+              "description": "api key description"
+            }
+          },
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AWS_IAM"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
