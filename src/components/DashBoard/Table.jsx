@@ -6,49 +6,160 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, true),
-  createData('Ice cream sandwich', 237, 9.0, 37, true),
-  createData('Eclair', 262, 16.0, 24, true),
-  createData('Cupcake', 305, 3.7, 67,true),
-  createData('Gingerbread', 356, 16.0, 49, false),
-];
+import { DataStore } from '@aws-amplify/datastore';
+import { Champ, CameraType, Logs } from '../../models';
+import { useState, useEffect } from "react";
+import Box from "@mui/material/Box";
+import { Typography} from "@mui/material";
 
 export default function BasicTable() {
+
+  useEffect(() => {
+    getChamp()
+    getCameraType()
+    getLog()
+  }, []);
+
+  const [champs, setChamps] = useState([]);
+  const [cameraTypes, setCameraTypes] = useState([]);
+  const [logs, setLogs] = useState([]);
+  
+    async function getChamp(){
+      try {
+        const champs = await DataStore.query(Champ);
+        console.log(champs)
+        setChamps(champs)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    async function getCameraType(){
+      try{
+        const camera = await DataStore.query(CameraType);
+        setCameraTypes(camera)
+      } catch (e){
+        console.log(e)
+      }
+    }
+    async function getLog(){
+      try {
+        const logs = await DataStore.query(Logs);
+        console.log(logs)
+        setLogs(logs)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    function RedBar() {
+      return (
+        <Box
+          sx={{
+            height: 20,
+            backgroundColor: (theme) =>
+              theme.palette.mode === 'light'
+                ? 'rgba(255, 255, 255, 0.1)'
+                : 'rgb(255 255 255 / 25%)',
+          }}
+        />
+      );
+    }
+
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">type</TableCell>
-            <TableCell align="right">Camera</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein=== true ? 'Online' : 'Offline'}</TableCell>
+    <Box>
+    <Box>
+      <Typography m={2}>Champs</Typography>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Label</TableCell>
+              <TableCell align="right">Latitude</TableCell>
+              <TableCell align="right">longitude</TableCell>
+              <TableCell align="right">updatedAt</TableCell>
+              <TableCell align="right">Pic de chaleur</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {champs.map((champ) => (
+              <TableRow
+                key={champ.id}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {champ.label}
+                </TableCell>
+                <TableCell align="right">{champ.latitude}</TableCell>
+                <TableCell align="right">{champ.longitude}</TableCell>
+                <TableCell align="right">{champ.updatedAt}</TableCell>
+                <TableCell align="right">{champ.etat === "true" ? 'Oui' : 'Non'}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Box>
+    <RedBar />
+    <Box>
+    <Typography m={2}>Camera</Typography>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Nom</TableCell>
+              <TableCell align="right">Angle</TableCell>
+              <TableCell align="right">Etat</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {cameraTypes.map((cameraType) => (
+              <TableRow
+                key={cameraType.id}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {cameraType.nom}
+                </TableCell>
+                <TableCell align="right">{cameraType.angle}</TableCell>
+                <TableCell align="right">{cameraType.etat=== true ? 'Oui' : 'Non'}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Box>
+    <RedBar />
+    <Box>
+    <Typography m={2}>Logs des feux</Typography>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Champ Id</TableCell>
+              <TableCell align="right">Date</TableCell>
+              <TableCell align="right">Latitude</TableCell>
+              <TableCell align="right">Longitude</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {logs.map((log) => (
+              <TableRow
+                key={log.id}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {log.champId}
+                </TableCell>
+                <TableCell align="right">{log.date}</TableCell>
+                <TableCell align="right">{log.latitude}</TableCell>
+                <TableCell align="right">{log.longitude}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Box>
+    </Box>  
   );
 }
