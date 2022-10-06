@@ -10,6 +10,7 @@ import Footer from "../../Layouts/Footer";
 import AddChamp from "../MesChamps/AddChamp";
 import {BarLoader} from "react-spinners";
 import DetailsChamp from "../MesChamps/DetailsChamp";
+import Profil from "../Profil/Profil";
 
 
 export default function Home() {
@@ -74,6 +75,7 @@ export default function Home() {
                 <Routes>
                     <Route path={"dashboard"} element={<Dashboard user={user} loggedIn={loggedIn}/>}/>
                     <Route path={"mes-champs"} element={<Meschamps/>}/>
+                    <Route path={"/profil"} element={<Profil/>}/>
                     <Route path={"ajouter-champ"} element={<AddChamp/>}/>
                     <Route path={"detailsChamp"} element={<DetailsChamp/>}/>
                 </Routes>

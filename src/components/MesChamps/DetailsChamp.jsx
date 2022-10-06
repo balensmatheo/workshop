@@ -50,11 +50,11 @@ export default function DetailsChamp(props){
                                     <List>
                                         <ListItem>
                                             <ListItemIcon><Label/></ListItemIcon>
-                                            <ListItemText sx={{textTransform: 'uppercase', fontSize: "calc(6px + 1vmin)"}}>{champ !== undefined ? champ.label : undefined}</ListItemText>
+                                            <ListItemText sx={{textTransform: 'uppercase', fontSize: "calc(6px + 1vmin)"}}>{champ.label}</ListItemText>
                                         </ListItem>
                                         <ListItem>
                                             <ListItemIcon><LocationOn/></ListItemIcon>
-                                            <ListItemText sx={{textTransform: 'uppercase', fontSize: "calc(6px + 1vmin)"}}>{champ !== undefined ? champ.latitude + " ; " +  champ.longitude : undefined}</ListItemText>
+                                            <ListItemText sx={{textTransform: 'uppercase', fontSize: "calc(6px + 1vmin)"}}>{champ.latitude + " ; " +  champ.longitude}</ListItemText>
                                         </ListItem>
                                         <ListItem>
                                             <ListItemIcon><Circle color={champ.etat === "true" ? "error" : "success"}/></ListItemIcon>

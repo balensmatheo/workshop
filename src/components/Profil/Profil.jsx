@@ -48,22 +48,23 @@ export default function Profil(){
 
     return(
         
-          <Box>
+          <Box sx={{p: 2}}>
             <Box>
                  <Typography sx={{fontSize: "calc(8px + 2.2vmin)"}}>Profil</Typography>
              </Box>
             <Divider/>
-             <Box>
+              <Box>
+                  <RedBar/>
+                  <Typography sx={{fontSize: "12pt"}}>Mettre à jour l'adresse mail :</Typography>
+                  <TextField
+                      variant="standard"
+                      value={mail}
+                      id="outlined-required"
+                      onChange={(e) => setMail(e.target.value)}
+                  />
+              </Box>
             <RedBar />
-                <TextField
-                    variant="standard"
-                    value={mail}
-                    id="outlined-required"
-                    onChange={(e) => setMail(e.target.value)}
-                />
-            </Box>
-            <RedBar />
-            <Button onClick={updateMail(mail)} variant="contained">Enregistrer</Button>
+            <Button onClick={() => updateMail(mail)} color={"success"} variant="contained">Enregistrer</Button>
         </Box>
     )
 }

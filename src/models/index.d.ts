@@ -28,7 +28,6 @@ export declare class CameraType {
   readonly id: string;
   readonly nom?: string | null;
   readonly angle?: string | null;
-  readonly etat?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<CameraType, CameraTypeMetaData>);

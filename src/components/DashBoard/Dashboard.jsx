@@ -3,7 +3,6 @@ import {useEffect, useState} from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import {Divider} from "@mui/material";
-import {NoAccounts} from "@mui/icons-material";
 import Table from "./Table";
 
 export default function Dashboard(props){
@@ -38,8 +37,6 @@ export default function Dashboard(props){
                 </Box>
                 <Divider/>
                 <Table></Table>
-
-
             </Box>
         )
     }
