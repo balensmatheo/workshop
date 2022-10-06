@@ -8,6 +8,7 @@ import {Auth} from 'aws-amplify';
 import SignIn from "./components/Authentication/SignIn";
 import Dashboard from "./components/DashBoard/Dashboard";
 import Meschamps from "./components/MesChamps/Meschamps";
+import Profil from './components/Profil/Profil';
 function App() {
 
     const [loggedIn, setLoggedIn] = useState(false);

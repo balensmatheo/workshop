@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import {Divider} from "@mui/material";
 import {NoAccounts} from "@mui/icons-material";
+import Table from "./Table";
 
 export default function Dashboard(props){
 
@@ -33,9 +34,12 @@ export default function Dashboard(props){
         return (
             <Box sx={{p:2}}>
                 <Box>
-                    <Typography fontSize={"calc(8px + 2.2vmin)"}>Bienvenue sur le tableau de bord {Auth.user !== null ? Auth.user.attributes.email : undefined}</Typography>
+                    <Typography fontSize={"calc(8px + 2.2vmin)"}>Bienvenue sur le tableau de bord</Typography>
                 </Box>
                 <Divider/>
+                <Table></Table>
+
+
             </Box>
         )
     }
